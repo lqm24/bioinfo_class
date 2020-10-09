@@ -51,7 +51,12 @@ for i in range(Length1):
 # 填充轨迹回溯矩阵的对应位置的得分
 for i in range(Length1 + 1):
     for j in range(Length2 + 1):
+        if (i == 0) & (j != 0):
+            Matrix_trace[0][3*j+1] = P2[j-1]
         Matrix_trace[3*i+1][3*j+1] = Matrix[i][j]
+    if i != 0:
+        Matrix_trace[3*i+1][0] = P1[i-1]
+
 
 
 # 回溯,找出最优解
@@ -82,16 +87,11 @@ P1 = ' ' + P1
 P2 = ' ' + P2
 traceback(P1, P2, pam250, gap_score, Matrix, Length1, Length2, s1, s2, t1, t2, Matrix_trace)
 
-print("global alignment rezult :")
-
-# 打印出全局得分矩阵
-for i in range(Length1 + 1):
-    print(Matrix[i])
-
 # 打印出回溯路径矩阵
+print("global alignment rezult :")
 for i in range((Length1 + 1) * 3):
     for j in range((Length2 + 1) * 3):
-        if Matrix_trace[i][j] == 0:
+        if (Matrix_trace[i][j] == 0) & (i*j != 1):
             print ("".center(3)),
         else:
             print (str(Matrix_trace[i][j]).center(3)),
