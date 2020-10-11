@@ -48,7 +48,7 @@ print("global alignment rezult :")
 
 # 初始化得分矩阵
 for i in range(Length2):
-    Matrix[0][i + 1]= Matrix[0][i] + gap_score
+    Matrix[0][i + 1] = Matrix[0][i] + gap_score
 for i in range(Length1):
     Matrix[(i + 1)][0] = Matrix[i][0] + gap_score
 
